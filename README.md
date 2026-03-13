@@ -1,98 +1,258 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com" target="blank">
+    <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="NestJS Logo" />
+  </a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<h1 align="center">WFH Attendance Backend</h1>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+Backend system for managing employee attendance in a Work From Home environment built with <b>NestJS</b>.
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+<p align="center">
+<img src="https://img.shields.io/badge/NestJS-Framework-red" />
+<img src="https://img.shields.io/badge/Node.js-18+-green" />
+<img src="https://img.shields.io/badge/Architecture-Microservices-blue" />
+<img src="https://img.shields.io/badge/License-MIT-lightgrey" />
+</p>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+# Overview
 
-```bash
-$ npm install
+WFH Attendance Backend is a backend system designed to manage employee attendance for remote work environments.
+
+This project originally started as a **monolithic NestJS application** and was later refactored into a **microservice architecture** to improve scalability and maintainability.
+
+The system now consists of:
+
+* **API Gateway (Monolith Refactored)** – handles incoming requests
+* **Employee Service** – manages employee data
+* **Attendance Service** – manages attendance records
+
+---
+
+# Architecture
+
+```text
+Client
+   │
+   ▼
+Gateway (src)
+   │
+   ├── Employee Service (apps/employee)
+   │
+   └── Attendance Service (apps/attendance)
 ```
 
-## Compile and run the project
+The **Gateway** acts as the entry point and communicates with other services via internal APIs.
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+# Project Structure
 
-# production mode
-$ npm run start:prod
+```text
+.
+├── apps
+│   ├── employee
+│   │
+│   └── attendance
+│
+├── src
+│   └── gateway (old monolith / API gateway)
+│
+├── package.json
+└── README.md
 ```
 
-## Run tests
+---
+
+# Tech Stack
+
+* **Framework:** NestJS
+* **Language:** TypeScript
+* **Database:** MySQL / PostgreSQL
+* **Architecture:** Monolith → Microservices
+* **ORM:** TypeORM
+* **Authentication:** JWT
+
+---
+
+# Prerequisites
+
+Before running this project, ensure you have installed:
+
+* Node.js >= 18
+* npm
+* Git
+* MySQL or PostgreSQL
+
+---
+
+# Installation
+
+## 1. Clone the Repository
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/marcelinusyudistira/wfh-attendance-be.git
+cd wfh-attendance-be
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 2. Install Dependencies
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+# Database Setup
 
-Check out a few resources that may come in handy when working with NestJS:
+Create the following databases:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```sql
+CREATE DATABASE wfh_employee_db;
+CREATE DATABASE wfh_attendance_db;
+```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Run Database Migrations
 
-## Stay in touch
+Run migrations for each service.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Employee Service
 
-## License
+```bash
+npm run migrate:employee
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Attendance Service
+
+```bash
+npm run migrate:attendance
+```
+
+---
+
+# Run Database Seeders
+
+Populate the database with initial data.
+
+### Employee Seeder
+
+```bash
+npm run seed:employee
+```
+
+### Attendance Seeder
+
+```bash
+npm run seed:attendance
+```
+
+---
+
+# Running the Services
+
+Each service must run separately.
+
+### Start Employee Service
+
+```bash
+npm run start:employee
+```
+
+Location:
+
+```text
+apps/employee
+```
+
+---
+
+### Start Attendance Service
+
+```bash
+npm run start:attendance
+```
+
+Location:
+
+```text
+apps/attendance
+```
+
+---
+
+### Start Gateway
+
+The gateway is the **original monolithic application** that now acts as the API entry point.
+
+```bash
+npm run start:gateway
+```
+
+Location:
+
+```text
+src
+```
+
+---
+
+# Development
+
+During development, run all services simultaneously in separate terminals:
+
+* Gateway
+* Employee Service
+* Attendance Service
+
+---
+
+# Environment Variables
+
+Create a `.env` file in the root directory.
+
+Example:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=password
+
+EMPLOYEE_DB_NAME=wfh_employee_db
+ATTENDANCE_DB_NAME=wfh_attendance_db
+
+JWT_SECRET=secret
+```
+
+---
+
+# API Documentation
+
+If Swagger is enabled, API documentation can be accessed at:
+
+```
+http://localhost:3000/api/docs
+```
+
+---
+
+# Future Improvements
+
+* Add message broker (RabbitMQ / Kafka)
+* Add API rate limiting
+* Implement distributed logging
+* Containerization with Docker
+
+---
+
+# License
+
+This project is licensed under the MIT License.
