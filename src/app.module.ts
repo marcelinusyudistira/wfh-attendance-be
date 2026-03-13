@@ -13,6 +13,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ReportsModule } from './modules/reports/reports.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { DepartmentsModule } from './modules/departments/departments.module';
+import 'dotenv/config';
 
 const isGatewayMinimal =
   String(process.env.GATEWAY_MINIMAL ?? 'false') === 'true';

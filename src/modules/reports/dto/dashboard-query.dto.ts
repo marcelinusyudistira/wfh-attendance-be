@@ -1,4 +1,4 @@
-import { IsDateString, IsOptional, IsUUID } from 'class-validator';
+import { IsDateString, IsOptional, IsUUID } from "class-validator";
 
 export class DashboardQueryDto {
   @IsOptional()
